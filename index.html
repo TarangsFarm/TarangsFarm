@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Tarang’s Farm</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  <style>
+    html,body { height:100%; margin:0; }
+    body {
+      font-family:'Poppins',sans-serif;
+      background: url('https://raw.githubusercontent.com/tarangkarpe/tarangkarpe.github.io/refs/heads/master/leaf.jpg')
+                  center/cover no-repeat fixed;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      color:#fff;
+      overflow:hidden;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+    }
+
+    .card-row {
+      display:flex;
+      gap:40px;
+      flex-wrap:wrap;
+      justify-content:center;
+      align-items:center;
+      max-width:1600px;
+      padding:40px;
+    }
+
+    .flip-card {
+      width:480px; height:580px;
+      perspective:1600px;
+      overflow:hidden;
+    }
+
+    .flip-card-inner {
+      width:100%; height:100%;
+      position:relative;
+      transition: transform 0.8s cubic-bezier(.2,.9,.3,1);
+      transform-style: preserve-3d;
+    }
+
+    .flip-card:hover .flip-card-inner,
+    .flip-card.flipped .flip-card-inner {
+      transform: rotateY(180deg);
+    }
+
+    .flip-card-front,
+    .flip-card-back {
+      position:absolute; inset:0;
+      border-radius:18px;
+      display:flex; flex-direction:column;
+      align-items:center; justify-content:center;
+      padding:28px; box-sizing:border-box;
+      background: rgba(25,25,25,0.50);
+      border: 1px solid rgba(255,255,255,0.12);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      box-shadow: 0 8px 28px rgba(0,0,0,0.85);
+      backface-visibility:hidden;
+      -webkit-backface-visibility:hidden;
+    }
+
+    .flip-card-front { transform: rotateY(0deg) translateZ(1px); }
+    .flip-card-back { transform: rotateY(180deg) translateZ(1px); }
+
+    .farm-logo { width:150px; height:150px; border-radius:50%; margin-bottom:10px;
+                 background:transparent; object-fit:contain; }
+    h2 { margin:8px 0 4px; font-size:1.6rem; font-weight:600; color:#DAEE01; text-align:center; }
+    .tagline { font-style:italic; opacity:.95; margin-bottom:8px; text-align:center; }
+    .intro, .back-text { font-size:1.1rem; line-height:1.45; text-align:center; opacity:.95; margin:6px 0; }
+    .highlight { color:#b8f1b0; font-weight:600; }
+    .location { font-size:0.85rem; opacity:.85; margin-top:8px; }
+
+    .fa-lemon { color:#f4d03f; font-size:2rem; margin-top:10px; }
+
+    button {
+      margin-top:14px; padding:12px 20px; border-radius:8px;
+      border:0; cursor:pointer; font-weight:600;
+      background:#c4302b; color:#fff;
+    }
+    button:hover { background:#a82820; }
+
+    /* popup */
+    .video-popup {
+      display:none; position:fixed; inset:0; z-index:1200;
+      background: rgba(0,0,0,0.6);
+      backdrop-filter: blur(8px);
+      align-items:center; justify-content:center;
+    }
+    .video-box {
+      width:90%; max-width:780px; border-radius:12px; overflow:hidden;
+      background: rgba(12,12,12,0.95);
+      box-shadow: 0 12px 40px rgba(0,0,0,0.6); position:relative;
+    }
+    .video-box iframe { width:100%; height:420px; border:0; display:block; }
+    .video-close { position:absolute; top:10px; right:12px; width:36px; height:36px;
+                   border-radius:50%; background:rgba(255,255,255,0.12); color:#fff; border:0; cursor:pointer; font-size:20px; }
+    .video-close:hover { background:rgba(255,255,255,0.2); }
+
+    @media (max-width:520px) {
+      .flip-card { width:320px; height:420px; }
+      .video-box iframe { height:260px; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card-row">
+
+    <!-- CARD 1 -->
+    <div class="flip-card" id="card1" role="button" tabindex="0">
+      <div class="flip-card-inner">
+        <div class="flip-card-front">
+          <img class="farm-logo" src="https://raw.githubusercontent.com/TarangsFarm/vermicompost-profile/refs/heads/main/large_logo.png" alt="Tarang's Farm logo">
+          <h2>Tarang’s Farm</h2>
+          <div class="tagline">Rooted in Nature • Growing with Science</div>
+          <div class="intro">
+            A <span class="highlight">2-acre regenerative farm</span> in Bhopal growing harmony between soil and sky.<br>
+            We cultivate <b>lemons</b>, <b>ginger</b>, <b>moringa</b>, <b>chilies</b>, and <b>gourds</b> — nourished by our signature <b>RootAmrit Vermicompost</b>.
+          </div>
+          <div class="location">📍 Semli Jadid • Bhopal</div>
+          <i class="fa-solid fa-lemon"></i>
+        </div>
+        <div class="flip-card-back">
+          <h2>🌾 Our Work</h2>
+          <div class="back-text">
+            • RootAmrit Organic Vermicompost<br>
+            • Premium Soil Enrichers<br>
+            • Organic Fruit & Spice Produce<br>
+            • Lemon Orchard Harvests
+          </div>
+          <div class="intro" style="margin-top:6px">
+            <b>Vision:</b> Reviving India’s soil through natural nutrition and creating
+            a sustainable circular farming model that inspires future growers.
+          </div>
+          <button id="openVideoBtn">🎥 Watch Tarang’s Farm</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- CARD 2 -->
+    <div class="flip-card" id="card2" role="button" tabindex="0">
+      <div class="flip-card-inner">
+        <div class="flip-card-front">
+          <i class="fa-solid fa-seedling fa-3x" style="color:#8de37d;margin-bottom:10px;"></i>
+          <h2>Our Practices</h2>
+          <div class="tagline">Soil • Water • Life in Balance</div>
+          <div class="intro">
+            From <b>organic composting</b> to <b>gravity-fed drip irrigation</b>, every system at Tarang’s Farm is crafted to conserve resources.
+            Our <b>vermicompost beds</b> recycle nutrients back into the earth, and <b>multilayer farming</b> multiplies productivity naturally.
+          </div>
+        </div>
+        <div class="flip-card-back">
+          <h2>🌿 Sustainable Approach</h2>
+          <div class="back-text">
+            • 18 Vermicompost Beds between Lemon Trees<br>
+            • Rain-Pipe Irrigation & Mulching<br>
+            • Zero Chemical Farming<br>
+            • Soil Microbial Restoration
+          </div>
+          <div class="intro">
+            Each cycle of production strengthens biodiversity, conserves groundwater, and restores the living fabric of our soil.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CARD 3 -->
+    <div class="flip-card" id="card3" role="button" tabindex="0">
+      <div class="flip-card-inner">
+        <div class="flip-card-front">
+          <i class="fa-solid fa-flask fa-3x" style="color:#b0d8ff;margin-bottom:10px;"></i>
+          <h2>Our Vision & Future</h2>
+          <div class="tagline">Innovation • Sustainability • Growth</div>
+          <div class="intro">
+            We’re setting up a <b>Plant Tissue Culture Lab</b> and <b>Indoor Nursery</b> to produce eco-friendly, disease-free plants.
+            Our aim: create future crops rooted in science yet grown with nature’s rhythm.
+          </div>
+        </div>
+        <div class="flip-card-back">
+          <h2>🌱 The Road Ahead</h2>
+          <div class="back-text">
+            • Expand RootAmrit Production<br>
+            • Launch Tissue Culture Programs<br>
+            • Train Farmers in Regenerative Models<br>
+            • Inspire Urban Gardening Movements
+          </div>
+          <div class="intro">
+            Tarang’s Farm stands as a bridge between traditional wisdom and modern ecological science — growing life sustainably.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Video Popup -->
+  <div id="videoPopup" class="video-popup">
+    <div class="video-box">
+      <button class="video-close" id="closeVideoBtn">×</button>
+      <iframe id="farmIframe" src="" allow="autoplay; encrypted-media" allowfullscreen title="Tarang's Farm Intro"></iframe>
+    </div>
+  </div>
+
+  <script>
+    document.querySelectorAll('.flip-card').forEach(card => {
+      card.addEventListener('click', e => {
+        if (e.target && (e.target.id === 'openVideoBtn' || e.target.closest('#openVideoBtn'))) return;
+        card.classList.toggle('flipped');
+      });
+      card.addEventListener('keydown', e => {
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); card.classList.toggle('flipped'); }
+      });
+    });
+
+    const VIDEO_URL = "https://www.youtube.com/embed/NQYKpVwpRXA?rel=0&autoplay=1&mute=0";
+    const popup = document.getElementById('videoPopup');
+    const iframe = document.getElementById('farmIframe');
+    const openBtn = document.getElementById('openVideoBtn');
+    const closeBtn = document.getElementById('closeVideoBtn');
+
+    function openVideo() {
+      iframe.src = VIDEO_URL;
+      popup.style.display = 'flex';
+      document.body.style.overflow = 'hidden';
+    }
+    function closeVideo() {
+      iframe.src = '';
+      popup.style.display = 'none';
+      document.body.style.overflow = '';
+    }
+    openBtn.addEventListener('click', openVideo);
+    closeBtn.addEventListener('click', closeVideo);
+    popup.addEventListener('click', e => { if (e.target === popup) closeVideo(); });
+    window.addEventListener('load', () => { setTimeout(openVideo, 800); });
+    document.addEventListener('keydown', e => { if (e.key === 'Escape' && popup.style.display === 'flex') closeVideo(); });
+  </script>
+</body>
+</html>
